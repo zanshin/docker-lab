@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  laba:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laba
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.2
+    ports:
+      - "2222:22" # map host port 2222 to container's 22
+
+  labb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: labb
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.3
+    ports:
+      - "2223:22" # map host port 2222 to container's 22
+
+  labc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: labc
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.4
+    ports:
+      - "2224:22" # map host port 2222 to container's 22
+
+  labd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: labd
+    networks:
+      lab_network:
+        ipv4_address: 172.20.0.5
+    ports:
+      - "2225:22" # map host port 2222 to container's 22
+
+networks:
+  lab_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/28
